@@ -6,7 +6,7 @@ Run `npm install`, then `npm run dev`. Open [http://localhost:3000](http://local
 
 Run `npm run test` to run tests.
 
-## Dev Notes
+## Contents
 
 ### /calculator/calculator.js
 
@@ -23,7 +23,7 @@ Contains the UI logic, written in React.
 
 Contains tests.
 
-### Next steps
+## Next steps
 
 Given more time, I would do the following:
 
