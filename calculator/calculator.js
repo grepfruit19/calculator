@@ -51,6 +51,33 @@ function popOperator(input) {
 }
 
 /**
+ * Concatenates numbers together in an array, so i.e.,
+ * [2, 2, "+", 5, 5] would be concatenated into [22, "+", 55].
+ * @param {Array} input
+ * @returns
+ */
+function concatenateInput(input) {
+  const arrayAsString = input.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    ""
+  );
+  // Array needs to be reversed because we're popping
+  const operatorArray = arrayAsString
+    .split(/[0-9]/)
+    .filter((element) => !!element)
+    .reverse();
+  const numberArray = arrayAsString.split(/[\+\-\/x]/);
+  const outputArray = [];
+  numberArray.forEach((number) => {
+    outputArray.push(Number(number));
+    if (operatorArray.length > 0) {
+      outputArray.push(operatorArray.pop());
+    }
+  });
+  return outputArray;
+}
+
+/**
  * Accepts an array of numbers and operators (i.e., '+', '-'), performs calculations
  * until there are no more operators then returns the result as a single Number
  * @param {Array} input
@@ -58,7 +85,8 @@ function popOperator(input) {
  */
 function calculate(input) {
   // TODO: Input validation, see tests for more details.
-  let workingArray = input;
+  let workingArray = concatenateInput(input);
+
   while (workingArray.length > 1) {
     // Making popOperator its own function could be an over-abstraction,
     // but I think it makes it more extensible later, in case you wanted
@@ -71,5 +99,6 @@ function calculate(input) {
 module.exports = {
   performCalculation,
   popOperator,
+  concatenateInput,
   calculate,
 };

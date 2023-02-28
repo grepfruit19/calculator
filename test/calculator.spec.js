@@ -1,6 +1,7 @@
 const {
   performCalculation,
   popOperator,
+  concatenateInput,
   calculate,
 } = require("../calculator/calculator");
 
@@ -32,6 +33,18 @@ describe("popOperator should perform a calculation and then return a smaller arr
   });
 });
 
+describe("concatenate input", () => {
+  test("concatenates numbers in an array together", () => {
+    expect(concatenateInput([2, 2, "+", 2, "-", 1, 0])).toEqual([
+      22,
+      "+",
+      2,
+      "-",
+      10,
+    ]);
+  });
+});
+
 describe("calculate handles multi-step calculations properly", () => {
   test("handles multi-step calculations", () => {
     expect(calculate([2, "+", 2, "+", 2])).toEqual(6);
@@ -41,27 +54,27 @@ describe("calculate handles multi-step calculations properly", () => {
     // The incorrect order of operations would produce 12.
     expect(calculate([2, "+", 2, "x", 3])).toEqual(8);
   });
+
+  test("handles every operator correctly", () => {
+    expect(calculate([2, "+", 2, "-", 2, "x", 2, "/", 2])).toEqual(2);
+  });
+
+  test("handles multi-digt numbers correctly", () => {
+    expect(calculate([2, 2, "+", 1, 0, "x", 1, 0])).toEqual(122);
+  });
 });
 
 // I might handle this later.
 // describe("throw conditions", () => {
 //   test("should throw if two operators in a row", () => {
-//     // Not sure if this syntax is correct.
 //     expect(calculate([2, "+", "+", 2])).toThrow();
 //   });
 
-//   test("should throw if two numbers in a row", () => {
-//     // Not sure if this syntax is correct.
-//     expect(calculate([2, 2, "+", 2])).toThrow();
-//   });
-
 //   test("should throw if it ends with an operator", () => {
-//     // Not sure if this syntax is correct.
 //     expect(calculate([2, 2, "+", 2])).toThrow();
 //   });
 
 //   test("should throw if it starts with an operator", () => {
-//     // Not sure if this syntax is correct.
 //     expect(calculate([2, 2, "+", 2])).toThrow();
 //   });
 // });
