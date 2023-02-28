@@ -61,12 +61,14 @@ function concatenateInput(input) {
     (accumulator, currentValue) => accumulator + currentValue,
     ""
   );
-  // Array needs to be reversed because we're popping
+  // Split arrays into numbers and operators, this will naturally combine individual numbers.
   const operatorArray = arrayAsString
     .split(/[0-9]/)
     .filter((element) => !!element)
+    // Array needs to be reversed because we're popping
     .reverse();
   const numberArray = arrayAsString.split(/[\+\-\/x]/);
+
   const outputArray = [];
   numberArray.forEach((number) => {
     outputArray.push(Number(number));
