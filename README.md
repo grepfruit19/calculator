@@ -29,7 +29,7 @@ Given more time, I would do the following:
 
 - Clean up the calculator display, currently it has commas (because the underlying data structure is an array), so I would remove that, probably by adding/overwriting the toString method use an empty space as a delimiter rather than commas.
 - Add input validation to the `calculate()` function, as well as the calculator UI itself, see the bottom of the tests for some validations I would try to add
-- Add error handling to the calculator, currently if you provide an invalid expression (i.e., `1,1`) it will throw an unhandled error.
+- Read keystrokes so you can use the keyboard directly
 
 ## Libraries Used
 
